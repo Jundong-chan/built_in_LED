@@ -9,8 +9,7 @@
 void delay(int val);
 void delay(int val)
 {
-    while (val--)
-        ;
+    while (val--);
 }
 
 int _start()
@@ -47,28 +46,35 @@ int _start()
     {
         //D7灯亮
         GPIOEOUT &= ~(1 << 13);
-        delay(0x2000000); //稍微延迟一下
-        //D8灯亮
-        GPIOCOUT &= ~(1 << 17);
-        delay(0x2000000); //稍微延迟一下
-        //D9灯亮，同时D7灯灭
-        GPIOCOUT &= ~(1 << 8);
-        GPIOEOUT |= (1 << 13);
-        delay(0x2000000); //稍微延迟一下
-        //D10灯亮，同时D8灯灭
-        GPIOCOUT &= ~(1 << 7);
-        GPIOCOUT |= (1 << 17);
-        delay(0x2000000); //稍微延迟一下
-        //D11灯亮，同时D9灯灭
-        GPIOCOUT &= ~(1 << 12);
-        GPIOCOUT |= (1 << 8);
-        delay(0x2000000); //稍微延迟一下
-
+        delay(0x1000000); //稍微延迟一下
         //D10灯灭
         GPIOCOUT |= (1 << 7);
-        delay(0x2000000); //稍微延迟一下
+        delay(0x2000000); 
+
+        //D8灯亮
+        GPIOCOUT &= ~(1 << 17);
+        delay(0x1000000);
         //D11灯灭
         GPIOCOUT |= (1 << 12);
-        delay(0x2000000); //稍微延迟一下
+        delay(0x2000000); 
+
+        //D9灯亮，同时D7灯灭
+        GPIOCOUT &= ~(1 << 8);
+        delay(0x1000000);
+        GPIOEOUT |= (1 << 13);
+        delay(0x2000000); 
+
+        //D10灯亮，同时D8灯灭
+        GPIOCOUT &= ~(1 << 7);
+        delay(0x1000000);
+        GPIOCOUT |= (1 << 17);
+        delay(0x2000000);
+
+        //D11灯亮，同时D9灯灭
+        GPIOCOUT &= ~(1 << 12);
+        delay(0x1000000);
+        GPIOCOUT |= (1 << 8);
+        delay(0x2000000);
+        
     }
 }
